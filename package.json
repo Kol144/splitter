@@ -1,0 +1,23 @@
+{
+  "name": "ai-music-separator-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first music source separation studio",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "test:cancel": "node scripts/cancel-smoke.mjs",
+    "test:residue": ".venv\\Scripts\\python.exe scripts\\residue-refinement-smoke.py",
+    "test:mixer": "node scripts/mixer-refinement-smoke.mjs",
+    "test:engine-api": "node scripts/app-separation-smoke.mjs",
+    "test:quality-guard": "node scripts/quality-guard-smoke.mjs",
+    "test:quality": "node scripts/quality-api-smoke.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1"
+  }
+}

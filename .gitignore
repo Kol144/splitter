@@ -1,0 +1,12 @@
+.venv/
+node_modules/
+data/
+*.log
+Thumbs.db
+desktop.ini
+__pycache__/
+*.py[cod]
+.env
+.env.*
+playwright-report/
+test-results/

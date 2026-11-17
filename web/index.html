@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101211" />
+    <meta name="description" content="Separación musical local mediante modelos reales de inteligencia artificial." />
+    <title>AI Music Separator Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#studio" aria-label="AI Music Separator Studio">
+          <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+          <span class="brand-name">separation<span>studio</span></span>
+        </a>
+        <div class="topbar-center"><span class="local-lock"><span class="lock-icon">⌑</span> LOCAL SESSION</span><span class="top-divider"></span><span class="runtime-status"><i class="status-dot"></i><span id="runtime-label">Comprobando motor…</span></span></div>
+        <div class="topbar-right"><span class="cpu-chip"><span class="chip-icon">▦</span> CPU <b>ONLY</b></span><button class="icon-button" id="help-button" aria-label="Ayuda" title="Ayuda">?</button><div class="avatar">S</div></div>
+      </header>
+
+      <aside class="sidebar">
+        <div class="workspace-label"><span class="workspace-glyph">◈</span><div><small>ESPACIO LOCAL</small><strong>Mi estudio</strong></div><span class="chevron">⌄</span></div>
+        <div class="nav-section-label">WORKSPACE</div>
+        <nav class="primary-nav" aria-label="Navegación principal">
+          <button class="nav-item active" data-view="studio"><span class="nav-icon">◫</span><span>Studio</span><kbd>1</kbd></button>
+          <button class="nav-item" data-view="library"><span class="nav-icon">▤</span><span>Library</span><kbd>2</kbd></button>
+          <button class="nav-item" data-view="models"><span class="nav-icon">✳</span><span>AI Models</span><span class="nav-count" id="installed-count">0</span></button>
+          <button class="nav-item mobile-settings" data-view="settings" aria-label="Configuración"><span class="nav-icon">⚙</span></button>
+        </nav>
+        <div class="sidebar-rule"></div>
+        <div class="nav-section-label sidebar-row-label"><span>RECENT PROJECTS</span><button id="sidebar-refresh" title="Actualizar">↻</button></div>
+        <div class="recent-list" id="recent-list"><div class="recent-empty">Tus proyectos aparecerán aquí.</div></div>
+        <div class="sidebar-bottom">
+          <div class="memory-card"><div class="memory-card-head"><span>RECURSOS DEL SISTEMA</span><span class="memory-dot"></span></div><div class="memory-metric"><strong id="memory-value">—</strong><span>RAM libre</span></div><div class="memory-bar"><span id="memory-bar-fill"></span></div><div class="memory-subline"><span id="cpu-name">CPU local</span><span id="thread-count">— hilos</span></div></div>
+          <button class="nav-item settings-link" data-view="settings"><span class="nav-icon">⚙</span><span>Configuración</span></button>
+          <div class="build-label"><span class="build-dot"></span> BUILD 0.1.0 <span class="build-spacer"></span> <span>v0.1</span></div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <div class="view active" id="view-studio">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> AUDIO WORKSPACE <span class="eyebrow-slash">/</span> <span id="heading-context">NEW SESSION</span></div><h1 id="studio-title">Separate the music.<br /><em>Keep every note.</em></h1><p class="page-intro">Pistas independientes, impulsadas por IA local. Tu audio no sale de este equipo.</p></div>
+            <div class="heading-step"><div class="step-ring">01</div><span>STEP 01 <b>·</b> 04</span></div>
+          </div>
+
+          <section class="import-panel" id="import-panel" aria-label="Importar una canción">
+            <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.flac,.aac,.m4a,.ogg,.opus,.aiff,.aif,.wma,.mp4,.mov,.mkv,.avi,.webm" hidden />
+            <div class="import-symbol"><span class="upload-arrow">↑</span><span class="import-ring"></span></div>
+            <div class="import-copy"><div class="import-title">Suelta una canción para empezar <span>o <button class="text-action" id="browse-button">elige un archivo</button></span></div><div class="import-subtitle">Audio y vídeo · los archivos permanecen en este ordenador</div></div>
+            <button class="outline-button browse-cta" id="browse-cta"><span>＋</span> Importar archivo</button>
+            <div class="format-tags"><span>MP3</span><span>WAV</span><span>FLAC</span><span>M4A</span><span>MP4</span><span>+ más</span></div>
+            <div class="drop-overlay"><div class="drop-overlay-icon">↓</div><strong>Suelta para importar</strong></div>
+          </section>
+
+          <section class="track-source-card hidden" id="source-card">
+            <div class="source-art"><span class="source-art-mark">✳</span><span class="source-art-lines"></span></div>
+            <div class="source-info"><div class="source-kicker">SOURCE AUDIO <span class="source-ready"><i></i> READY</span></div><h2 id="source-name">—</h2><div class="source-meta" id="source-meta"></div></div>
+            <div class="source-actions"><button class="icon-button" id="preview-source" title="Escuchar original">▶</button><button class="icon-button danger-hover" id="remove-source" title="Quitar archivo">×</button></div>
+          </section>
+
+          <section class="setup-grid" id="setup-grid">
+            <div class="setup-block split-mode-block"><div class="section-overline"><span class="section-index">01</span> SEPARATION MODE</div><div class="mode-selector"><button class="mode-option selected" data-mode="quick"><span class="mode-radio"></span><span><b>Quick split</b><small>4 grupos principales</small></span><span class="mode-tag">RECOMMENDED</span></button><button class="mode-option" data-mode="advanced"><span class="mode-radio"></span><span><b>Advanced split</b><small>Fuentes experimentales</small></span><span class="mode-arrow">↗</span></button></div></div>
+            <div class="setup-block model-block"><div class="section-overline"><span class="section-index">02</span> SEPARATION ENGINE <span class="info-mark" title="Los modelos se descargan solo cuando se seleccionan.">i</span></div><div class="model-selector-row"><div class="model-gem">✳</div><div class="model-select-wrap"><label for="model-select">Modelo</label><select id="model-select"><option value="htdemucs">HTDemucs · 4 stems</option><option value="htdemucs_ft">HTDemucs Fine-Tuned · máxima calidad</option><option value="mdx_extra">MDX-Extra · alternativa</option><option value="mdx_extra_q">MDX-Extra-Q · cuantizado</option><option value="htdemucs_6s">HTDemucs 6S · experimental</option></select></div><span class="model-health" id="model-health">CHECKING</span></div><div class="model-note" id="model-note">Modelo IA real · CPU local · pesos no descargados todavía.</div></div>
+            <div class="setup-block profile-block"><div class="section-overline"><span class="section-index">03</span> PROCESSING PROFILE</div><div class="profile-selector"><button class="profile-option" data-profile="performance"><span>PERFORMANCE</span><small>16-bit · rápido</small></button><button class="profile-option active" data-profile="balanced"><span>BALANCED</span><small>24-bit · equilibrio</small></button><button class="profile-option" data-profile="maximum"><span>MAX QUALITY</span><small>32-bit · precisión</small></button></div><div class="profile-note" id="profile-note">CPU · 4 hilos · 1 trabajo simultáneo</div></div>
+            <div class="setup-block source-block hidden" id="source-options-block"><div class="section-overline"><span class="section-index">04</span> STEMS TO SEPARATE</div><div class="source-options" id="source-options"></div><div class="source-note" id="source-note">Las fuentes no disponibles en el modelo elegido no se pueden extraer.</div></div>
+            <div class="setup-block refinement-block"><label class="section-overline" for="silence-refinement">LIMPIEZA DE SILENCIOS</label><select id="silence-refinement" class="refinement-select"><option value="off">Conservar todo el audio</option><option value="exact">Solo silencio casi digital</option><option value="conservative-residual">Residuo muy débil · experimental</option></select><p class="refinement-note">El análisis conserva notas tenues y sonidos dudosos. La limpieza es opcional y guarda una copia para comparar con el stem original.</p></div>
+          </section>
+
+          <div class="action-row" id="action-row"><div class="action-hint"><span class="shield-icon">◈</span><span>Procesamiento local <b>·</b> sin subidas</span></div><button class="primary-button" id="separate-button" disabled><span class="button-spark">✳</span> SEPARAR <span class="button-arrow">→</span></button></div>
+
+          <section class="job-panel hidden" id="job-panel"><div class="job-spinner"></div><div class="job-copy"><strong id="job-title">Preparando el modelo…</strong><span id="job-detail">CPU local · puedes dejar la ventana abierta</span></div><span class="job-elapsed" id="job-elapsed">00:00</span><button class="text-action cancel-job" id="cancel-job">Cancelar</button><div class="job-progress"><span id="job-progress-fill"></span></div></section>
+
+          <section class="results-section hidden" id="results-section">
+            <div class="results-heading"><div><div class="section-overline"><span class="section-index">04</span> SEPARATED STEMS <span class="results-count" id="results-count">0 tracks</span></div><h2>Tu mezcla, por capas.</h2></div><div class="results-actions"><button class="outline-button" id="play-all-button"><span>▶</span> Escuchar mezcla</button><a class="primary-button compact-button" id="download-all" href="#"><span>↓</span> Exportar stems <span class="button-arrow">→</span></a></div></div>
+            <div class="export-options" id="export-options" aria-label="Opciones de exportación">
+              <label>FORMATO<select id="export-format"><option value="wav">WAV</option><option value="flac">FLAC</option><option value="mp3">MP3</option><option value="aac">AAC (M4A)</option><option value="ogg">OGG</option><option value="aiff">AIFF</option></select></label>
+              <label>FRECUENCIA<select id="export-rate"><option value="44100">44,1 kHz</option><option value="48000">48 kHz</option><option value="88200">88,2 kHz</option><option value="96000">96 kHz</option></select></label>
+              <label>PROFUNDIDAD<select id="export-bits"><option value="16">16 bit</option><option value="24">24 bit</option><option value="32">32-bit float</option></select></label>
+              <label>CANALES<select id="export-channels"><option value="2">Estéreo</option><option value="1">Mono</option></select></label>
+              <label class="normalize-option"><input id="export-normalize" type="checkbox" /> Normalizar</label>
+            </div>
+            <div class="refinement-toolbar"><div><strong>Revisar los silencios</strong><p>Analiza estas pistas sin repetir la separación de IA.</p></div><label class="visually-hidden" for="cleanup-mode">Tipo de limpieza</label><select id="cleanup-mode" class="refinement-select"><option value="exact">Solo silencio casi digital</option><option value="conservative-residual">Residuo muy débil · experimental</option></select><button class="outline-button" id="refine-stems">Revisar silencios</button></div>
+            <div id="stem-variant-row" class="stem-variant-row hidden"><label for="stem-variant">Escuchar y exportar</label><select id="stem-variant"><option value="refined">Versión revisada</option><option value="raw">Original de Demucs</option></select><span id="refinement-summary"></span></div>
+            <div class="track-list" id="track-list"></div>
+            <div class="mixer-help">▶ Escucha individual · S combina las pistas en Solo · M silencia y deja la pista en gris.<button id="change-separation" class="text-action">Cambiar modelo o perfil</button></div>
+            <div class="mix-note"><span class="mix-note-icon">i</span><span>Los cambios solo afectan a las copias exportadas; los stems originales quedan intactos. Los formatos con pérdida usan ajustes fijos de alta calidad.</span><span class="mix-model" id="mix-model"></span></div>
+          </section>
+
+          <div class="footer-note"><span class="footer-lock">⌑</span> Tus archivos se almacenan localmente <span class="footer-sep">·</span> <button class="text-action" data-open-view="models">Gestionar modelos AI</button><span class="footer-spacer"></span><span>HECHO PARA MÚSICA, NO PARA TRACKS</span></div>
+        </div>
+
+        <section class="view subpage" id="view-library"><div class="subpage-heading"><div class="eyebrow"><span class="eyebrow-line"></span> LOCAL WORKSPACE <span class="eyebrow-slash">/</span> ARCHIVE</div><h1>Project library<span>.</span></h1><p>Proyectos de separación guardados en este dispositivo.</p></div><div class="library-toolbar"><span id="library-count">0 PROJECTS</span><button class="outline-button" data-open-view="studio">＋ Nuevo proyecto</button></div><div id="library-grid" class="library-grid"></div></section>
+
+        <section class="view subpage" id="view-models"><div class="subpage-heading"><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM CONFIGURATION <span class="eyebrow-slash">/</span> MODEL CATALOG</div><h1>AI models<span>.</span></h1><p>Los pesos solo se descargan cuando pulsas Instalar. La separación funciona sin conexión después de instalarlos.</p></div><div class="model-warning"><span>⌁</span><div><strong>Para cuatro stems, HTDemucs Fine-Tuned es la opción de máxima calidad.</strong><p>Usa cuatro modelos afinados por fuente y tarda aproximadamente cuatro veces más. La aplicación mantiene un único trabajo y revisa RAM y espacio de disco antes de iniciarlo.</p></div></div><div class="catalog-toolbar"><span>MODELOS COMPATIBLES</span><span>FUENTE: REPOSITORIO OFICIAL DEMUCS</span></div><div id="model-catalog" class="model-catalog"></div><div class="model-operation hidden" id="model-operation"><div class="job-spinner"></div><div><strong id="model-operation-title">Preparando modelo</strong><p id="model-operation-detail">Conectando con el repositorio oficial…</p></div><button class="text-action" id="cancel-model-operation">Cancelar</button></div><div class="catalog-footer">La separación local está basada en Demucs v4, publicado bajo licencia MIT. El modelo Fine-Tuned es un ensemble para los cuatro stems; el modelo 6S mantiene guitarra y piano como funciones experimentales.</div></section>
+
+        <section class="view subpage" id="view-settings"><div class="subpage-heading"><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM CONFIGURATION <span class="eyebrow-slash">/</span> PREFERENCES</div><h1>Settings<span>.</span></h1><p>Recursos y comportamiento de procesamiento local.</p></div><div class="settings-card"><div class="settings-section-title">CPU PROCESSING <span>ACTIVE</span></div><div class="setting-row"><div><strong>Hilos de PyTorch</strong><p>Empieza con 4; puedes probar 6 y comparar el tiempo en tu equipo.</p></div><select id="threads-select"><option value="4">4 hilos · recomendado</option><option value="6">6 hilos · experimental</option></select></div><div class="setting-row"><div><strong>Dispositivo de inferencia</strong><p>GPU Intel/CUDA/XPU no se activan sin una comprobación compatible.</p></div><span class="setting-value"><i class="status-dot green"></i> CPU</span></div><div class="setting-row"><div><strong>Trabajos paralelos</strong><p>Un solo trabajo para reducir presión de memoria.</p></div><span class="setting-value">1 JOB</span></div></div><div class="settings-card"><div class="settings-section-title">LOCAL STORAGE <span>ON DEVICE</span></div><div class="setting-row"><div><strong>Biblioteca de proyectos</strong><p>Los originales, stems y metadatos se guardan dentro de la carpeta data/.</p></div><button class="outline-button" id="refresh-system">Actualizar estado</button></div><div class="setting-row"><div><strong>Archivos temporales</strong><p>Solo se limpia la caché temporal; los proyectos guardados se conservan.</p></div><button class="outline-button" id="clean-temp">Limpiar temporales</button></div></div><div class="system-details" id="system-details"></div></section>
+      </main>
+
+      <footer class="transport hidden" id="transport">
+        <div class="transport-track"><div class="transport-art">✳</div><div><strong id="transport-title">—</strong><span id="transport-subtitle">—</span></div></div>
+        <div class="transport-controls"><div class="transport-buttons"><button id="seek-back" title="Retroceder 10 segundos">↶</button><button class="transport-play" id="transport-play" title="Reproducir">▶</button><button id="seek-forward" title="Avanzar 10 segundos">↷</button></div><div class="transport-timeline"><span id="current-time">00:00</span><input type="range" id="timeline" min="0" max="1000" value="0" /><span id="total-time">00:00</span></div></div>
+        <div class="transport-right"><span class="transport-synced"><i></i> SYNCED STEMS</span><button id="transport-volume" class="transport-volume" title="Silenciar mezcla">◖</button><input id="master-volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volumen general" /></div>
+      </footer>
+    </div>
+    <div class="toast-region" id="toast-region" aria-live="polite"></div>
+    <dialog id="confirm-dialog" class="confirm-dialog"><form method="dialog"><button class="dialog-close" value="cancel">×</button><span class="dialog-icon">↓</span><div class="eyebrow">MODEL DOWNLOAD</div><h2 id="dialog-title">Install model?</h2><p id="dialog-body">The model will be downloaded from the official source.</p><div class="dialog-size" id="dialog-size"></div><div class="dialog-actions"><button class="outline-button" value="cancel">Cancelar</button><button class="primary-button" id="dialog-confirm" value="confirm">DESCARGAR <span class="button-arrow">→</span></button></div></form></dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
