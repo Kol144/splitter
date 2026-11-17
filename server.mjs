@@ -934,6 +934,12 @@ async function handleApi(req, res, url) {
       const metadataRow = db.prepare('SELECT metadata_json FROM projects WHERE id = ?').get(project.id);
       const metadata = JSON.parse(metadataRow?.metadata_json || '{}');
       metadata.lastModel = model.id;
+      const inferenceReportPath = path.join(outputRoot, 'inference-report.json');
+      if (existsSync(inferenceReportPath)) {
+        inference.runtime = JSON.parse(readFileSync(inferenceReportPath, 'utf8'));
+        inference.requestedThreads = threads;
+        inference.threads = inference.runtime.threads;
+      }
       metadata.inference = inference;
       metadata.refinement = refinement;
       // Only publish new files once the entire job has succeeded. Existing
