@@ -8,8 +8,8 @@ export function showStaticHosting() {
   text('.workspace-label small', 'ESPACIO WEB');
   text('#runtime-label', 'Motor pendiente de conectar');
   text('.page-intro', hostingMessage);
-  text('.import-title', 'La importación estará disponible al conectar el motor');
-  text('.import-subtitle', 'Esta página no sube ni procesa archivos.');
+  text('.import-title', 'Motor sin conectar');
+  text('.import-subtitle', 'Sin subidas');
   text('#model-health', 'SIN SERVIDOR');
   text('#model-note', 'Los modelos requieren un servidor de procesamiento.');
   text('#profile-note', 'Procesamiento pendiente de conectar');
