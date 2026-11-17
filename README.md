@@ -4,6 +4,16 @@ Aplicación local para separar audio en stems con modelos reales de IA. El servi
 
 ## Inicio
 
+### Web pública
+
+La interfaz se publica en **https://kol144.github.io/splitter/** mediante el workflow `.github/workflows/pages.yml`. Cada cambio en `web/` subido a `main` actualiza la publicación. Se puede abrir desde móvil, tablet u ordenador sin ejecutar el proyecto localmente.
+
+**GitHub Pages solo publica la interfaz:** todavía no permite importar, separar o descargar canciones. Estas acciones quedan desactivadas hasta disponer de un servidor con Node.js, Python, Demucs y almacenamiento. El repositorio por sí solo no proporciona ese servidor. La publicación no incluye los audios, stems, base de datos ni modelos del equipo.
+
+`npm run build:pages` genera exclusivamente los archivos públicos en `data/temp/github-pages/`. La aplicación servida por Node conserva su funcionamiento habitual. Para completar el servicio online habrá que alojar el motor y proteger el acceso a los proyectos antes de conectarlo a la web.
+
+### Ejecución local
+
 1. Instala Node.js 22.13 o posterior.
 2. Ejecuta `INSTALL.bat`. Prepara Python 3.11, PyTorch CPU y Demucs; no descarga pesos de modelos.
 3. Ejecuta `START.bat`.

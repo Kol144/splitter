@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node server.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
     "smoke": "node scripts/smoke.mjs",
     "test:cancel": "node scripts/cancel-smoke.mjs",
     "test:residue": ".venv\\Scripts\\python.exe scripts\\residue-refinement-smoke.py",

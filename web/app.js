@@ -1,4 +1,5 @@
 import { trackState } from './mixer-state.js';
+import { isStaticHosting, hostingMessage, showStaticHosting } from './hosting.js';
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
@@ -12,6 +13,7 @@ const state = {
 };
 
 const api = async (url, options = {}) => {
+  if (isStaticHosting) throw new Error(hostingMessage);
   const response = await fetch(url, { cache: 'no-store', ...options });
   const type = response.headers.get('content-type') || '';
   const body = type.includes('application/json') ? await response.json() : await response.blob();
@@ -403,6 +405,7 @@ function browserMetadata(file) {
 
 async function importFile(file) {
   if (!file) return;
+  if (isStaticHosting) return toast('Motor pendiente de conectar', hostingMessage);
   $('#browse-cta').disabled = true;
   $('#browse-cta').textContent = 'Importando…';
   toast('Importando archivo', 'Se guarda en data/projects dentro de esta carpeta local.');
@@ -929,7 +932,7 @@ function bindEvents() {
     try { const result = await api('/api/temp', { method: 'DELETE' }); toast('Temporales limpiados', `${result.deleted} archivo(s) temporal(es) eliminado(s).`, 'success'); }
     catch (error) { toast('No se pudieron limpiar los temporales', error.message, 'error'); }
   });
-  $('#help-button').addEventListener('click', () => toast('AI Music Separator Studio', 'Importa un audio, instala HTDemucs desde AI Models y luego ejecuta la separación local. No se simulan resultados.'));
+  $('#help-button').addEventListener('click', () => toast('AI Music Separator Studio', isStaticHosting ? hostingMessage : 'Importa un audio, instala HTDemucs desde AI Models y luego ejecuta la separación local. No se simulan resultados.'));
 }
 
 async function init() {
@@ -942,6 +945,10 @@ async function init() {
   }
   updateExportControls();
   bindEvents();
+  if (isStaticHosting) {
+    showStaticHosting();
+    return;
+  }
   const rememberedModel = localStorage.getItem('aims-model');
   if (rememberedModel && $('#model-select').querySelector(`option[value="${CSS.escape(rememberedModel)}"]`)) $('#model-select').value = rememberedModel;
   setMode('quick'); setProfile(state.profile);
