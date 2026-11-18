@@ -1,0 +1,1879 @@
+{
+  "date": "2026-11-18",
+  "baselineCommit": "8e41a0b1b63aec8298e45aaa099eefdb4b06fd9b",
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "logicalCores": 8,
+    "totalMemoryBytes": 8373805056,
+    "platform": "win32"
+  },
+  "sourceHashes": {
+    "backend/separation/inference.py": "513b8446f6dc7ea2597cbe4c215b34fc6f4adab6313c6bfd8e5813ee24121ac9",
+    "backend/separation/runner.py": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+    "server.mjs": "ef9cb5320d5e7588927ff28eec968ca2bc353869baa286daa7d60fb0b678a4a8",
+    "scripts/benchmark-separation.py": "fac2811e8ed92ee81071a0dc4a1cd37c76617a224c1198674e4d35692f8cae41"
+  },
+  "referenceHashes": {
+    "drums": "c600f7732fb7cb2b08d582156f99886a21ba068c6b397a412c1a9f26613f3de9",
+    "bass": "d262ddfd87869f464a1d417f9db66ff409ac60ff71078c885df35f9af4ee7c83",
+    "other": "739b76a7c1e0cee3dd34a627ba3cdd98392070088ea7c1c0fb82d407795d0d85",
+    "vocals": "11bd5e7ae81a3984c8e7e9e56cb3ea9116bb874d9893b040d71657e47ff7d8b8"
+  },
+  "notes": [
+    "Before/after labels isolate sequential scheduling before the DC and shared-gain corrections. Final labels include those corrections.",
+    "The first before/music run is cold. Use before-warm for warm comparisons.",
+    "Falcon references are decoded official demonstration MP3s. Mix is the sum of the cropped references.",
+    "final/htdemucs_ft/falcon-1 overlapped a user job. Exclude its time from speed conclusions.",
+    "A benchmark sequence stopped at the system memory reserve and resumed after the user job completed.",
+    "Missing inferenceSha256 in older records means that fingerprint was not recorded at the time.",
+    "SI-SDR centers both reference and estimate and combines stereo channels. Scores cover the cited excerpts only."
+  ],
+  "runs": [
+    {
+      "label": "after-ft",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 28.981080200057477,
+      "loadSeconds": 1.8543729000957683,
+      "inferenceSeconds": 23.210709000122733,
+      "peakRssBytes": 1337008128,
+      "peakCommitBytes": 1882877952,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3193597197532654,
+          "rms": 0.02821060145659015,
+          "siSdrDb": 3.937580168006776,
+          "errorRms": 0.017021199951820814,
+          "differenceErrorRms": 0.003237680004428629,
+          "stereoSideErrorRms": 0.014532164667824869
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3591243326663971,
+          "rms": 0.12390722217946747,
+          "siSdrDb": 17.975743618842653,
+          "errorRms": 0.015596985934122903,
+          "differenceErrorRms": 0.001422093293435818,
+          "stereoSideErrorRms": 0.0010744907403200535
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2340794801712036,
+          "rms": 0.04677930164709306,
+          "siSdrDb": 8.475872329422774,
+          "errorRms": 0.017882861353025383,
+          "differenceErrorRms": 0.0035120082630390554,
+          "stereoSideErrorRms": 0.01772219173109878
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31131085753440857,
+          "rms": 0.0384671104663389,
+          "siSdrDb": 7.904173408240075,
+          "errorRms": 0.01504041729646,
+          "differenceErrorRms": 0.0033159683723495955,
+          "stereoSideErrorRms": 0.009746534967371517
+        },
+        "mixtureErrorRms": 0.0074956603617173
+      }
+    },
+    {
+      "label": "after-ft",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 2,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 35.8906333000632,
+      "loadSeconds": 4.371392500004731,
+      "inferenceSeconds": 23.726792600005865,
+      "peakRssBytes": 1337712640,
+      "peakCommitBytes": 1882845184,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3193597197532654,
+          "rms": 0.02821060145659015,
+          "siSdrDb": 3.937580168006776,
+          "errorRms": 0.017021199951820814,
+          "differenceErrorRms": 0.003237680004428629,
+          "stereoSideErrorRms": 0.014532164667824869
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3591243326663971,
+          "rms": 0.12390722217946747,
+          "siSdrDb": 17.975743618842653,
+          "errorRms": 0.015596985934122903,
+          "differenceErrorRms": 0.001422093293435818,
+          "stereoSideErrorRms": 0.0010744907403200535
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2340794801712036,
+          "rms": 0.04677930164709306,
+          "siSdrDb": 8.475872329422774,
+          "errorRms": 0.017882861353025383,
+          "differenceErrorRms": 0.0035120082630390554,
+          "stereoSideErrorRms": 0.01772219173109878
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31131085753440857,
+          "rms": 0.0384671104663389,
+          "siSdrDb": 7.904173408240075,
+          "errorRms": 0.01504041729646,
+          "differenceErrorRms": 0.0033159683723495955,
+          "stereoSideErrorRms": 0.009746534967371517
+        },
+        "mixtureErrorRms": 0.0074956603617173
+      }
+    },
+    {
+      "label": "after-private",
+      "model": "htdemucs",
+      "case": "private-excerpt",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 27.7115793999983,
+      "loadSeconds": 0.5213545000879094,
+      "inferenceSeconds": 23.329124000039883,
+      "peakRssBytes": 1301438464,
+      "peakCommitBytes": 1918091264,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "d4a6e39f622136cef28ff10fc8dd04fa4c9a7bb56ae12afc4ba1c8e1dce31a29",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9900989532470703,
+          "rms": 0.14338992956231325
+        },
+        "bass": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9832879900932312,
+          "rms": 0.26207094082282756
+        },
+        "other": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.6326290369033813,
+          "rms": 0.07721634595880228
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9900990128517151,
+          "rms": 0.14215130305811013
+        },
+        "mixtureErrorRms": 0.05794158715778663
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "antiphase",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.993955200072378,
+      "loadSeconds": 0.5666024000383914,
+      "inferenceSeconds": 11.290232799947262,
+      "peakRssBytes": 1226379264,
+      "peakCommitBytes": 1709965312,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "b3d48bc7764dffebadeb9dfdff6cca77409905b78384a813369412d4d7f2c172",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.005443641450256109,
+          "rms": 0.0008239113867666014
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.001742740161716938,
+          "rms": 0.00024476250875671003
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.5665756464004517,
+          "rms": 0.1366452501149359
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.0851965844631195,
+          "rms": 0.003810679282257875
+        },
+        "mixtureErrorRms": 0.00408245576489652
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.644042400061153,
+      "loadSeconds": 0.5058032999513671,
+      "inferenceSeconds": 11.258909800089896,
+      "peakRssBytes": 1238528000,
+      "peakCommitBytes": 1709453312,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 2,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 16.448799700010568,
+      "loadSeconds": 0.49317770008929074,
+      "inferenceSeconds": 11.22370289999526,
+      "peakRssBytes": 1225707520,
+      "peakCommitBytes": 1709666304,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 3,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 14.912528000073507,
+      "loadSeconds": 0.4998963000252843,
+      "inferenceSeconds": 10.769837900064886,
+      "peakRssBytes": 1238302720,
+      "peakCommitBytes": 1710231552,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "repeated20",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 27.414220900041983,
+      "loadSeconds": 0.47376630001235753,
+      "inferenceSeconds": 22.56424859992694,
+      "peakRssBytes": 1301520384,
+      "peakCommitBytes": 1920290816,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "23f207e63f7afaf0dec0d02b96bbe3df43de7b7baa66052ec2d3aebd2a8d6bc2",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.314954936504364,
+          "rms": 0.02121415075279879,
+          "siSdrDb": -0.1594554237781914,
+          "errorRms": 0.022571429065290496,
+          "differenceErrorRms": 0.003292200931575931,
+          "stereoSideErrorRms": 0.01566638835268055
+        },
+        "bass": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.39029738306999207,
+          "rms": 0.12467577912938312,
+          "siSdrDb": 15.540027055109196,
+          "errorRms": 0.020611457865147342,
+          "differenceErrorRms": 0.0014855723541550919,
+          "stereoSideErrorRms": 0.0010247690722785467
+        },
+        "other": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.23250629007816315,
+          "rms": 0.046055855037773194,
+          "siSdrDb": 8.437156445853514,
+          "errorRms": 0.01799053732704183,
+          "differenceErrorRms": 0.0035396001867322516,
+          "stereoSideErrorRms": 0.018375450892510706
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.3167775869369507,
+          "rms": 0.037935997521693465,
+          "siSdrDb": 7.692701965942447,
+          "errorRms": 0.015327734253129308,
+          "differenceErrorRms": 0.0032724324575375803,
+          "stereoSideErrorRms": 0.010207091917839344
+        },
+        "mixtureErrorRms": 0.0033360622963029955
+      }
+    },
+    {
+      "label": "after",
+      "model": "htdemucs",
+      "case": "silence",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 4.17402289994061,
+      "loadSeconds": 0.5089553999714553,
+      "inferenceSeconds": 0,
+      "peakRssBytes": 455589888,
+      "peakCommitBytes": 875589632,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "764edee16cfd3a81634fabade8c99d2f356eda1af850d939d07be1e1a7e9dbd8",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0,
+          "rms": 0
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0,
+          "rms": 0
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0,
+          "rms": 0
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0,
+          "rms": 0
+        },
+        "mixtureErrorRms": 0
+      }
+    },
+    {
+      "label": "before-ft",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 34.59754949994385,
+      "loadSeconds": 6.590459699975327,
+      "inferenceSeconds": 24.22496050002519,
+      "peakRssBytes": 1765015552,
+      "peakCommitBytes": 2693931008,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3193597197532654,
+          "rms": 0.02821060145659015,
+          "siSdrDb": 3.937580168006776,
+          "errorRms": 0.017021199951820814,
+          "differenceErrorRms": 0.003237680004428629,
+          "stereoSideErrorRms": 0.014532164667824869
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3591243326663971,
+          "rms": 0.12390722217946747,
+          "siSdrDb": 17.975743618842653,
+          "errorRms": 0.015596985934122903,
+          "differenceErrorRms": 0.001422093293435818,
+          "stereoSideErrorRms": 0.0010744907403200535
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2340794801712036,
+          "rms": 0.04677930164709306,
+          "siSdrDb": 8.475872329422774,
+          "errorRms": 0.017882861353025383,
+          "differenceErrorRms": 0.0035120082630390554,
+          "stereoSideErrorRms": 0.01772219173109878
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31131085753440857,
+          "rms": 0.0384671104663389,
+          "siSdrDb": 7.904173408240075,
+          "errorRms": 0.01504041729646,
+          "differenceErrorRms": 0.0033159683723495955,
+          "stereoSideErrorRms": 0.009746534967371517
+        },
+        "mixtureErrorRms": 0.0074956603617173
+      }
+    },
+    {
+      "label": "before-ft",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 2,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 30.55139350006357,
+      "loadSeconds": 2.0712268999777734,
+      "inferenceSeconds": 24.409852899960242,
+      "peakRssBytes": 1764769792,
+      "peakCommitBytes": 2744340480,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3193597197532654,
+          "rms": 0.02821060145659015,
+          "siSdrDb": 3.937580168006776,
+          "errorRms": 0.017021199951820814,
+          "differenceErrorRms": 0.003237680004428629,
+          "stereoSideErrorRms": 0.014532164667824869
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3591243326663971,
+          "rms": 0.12390722217946747,
+          "siSdrDb": 17.975743618842653,
+          "errorRms": 0.015596985934122903,
+          "differenceErrorRms": 0.001422093293435818,
+          "stereoSideErrorRms": 0.0010744907403200535
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2340794801712036,
+          "rms": 0.04677930164709306,
+          "siSdrDb": 8.475872329422774,
+          "errorRms": 0.017882861353025383,
+          "differenceErrorRms": 0.0035120082630390554,
+          "stereoSideErrorRms": 0.01772219173109878
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31131085753440857,
+          "rms": 0.0384671104663389,
+          "siSdrDb": 7.904173408240075,
+          "errorRms": 0.01504041729646,
+          "differenceErrorRms": 0.0033159683723495955,
+          "stereoSideErrorRms": 0.009746534967371517
+        },
+        "mixtureErrorRms": 0.0074956603617173
+      }
+    },
+    {
+      "label": "before-private",
+      "model": "htdemucs",
+      "case": "private-excerpt",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 27.53520650009159,
+      "loadSeconds": 0.4974285000935197,
+      "inferenceSeconds": 23.145176099962555,
+      "peakRssBytes": 1321988096,
+      "peakCommitBytes": 1894240256,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "d4a6e39f622136cef28ff10fc8dd04fa4c9a7bb56ae12afc4ba1c8e1dce31a29",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9900989532470703,
+          "rms": 0.14338992956231325
+        },
+        "bass": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9832879900932312,
+          "rms": 0.26207094082282756
+        },
+        "other": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.6326290369033813,
+          "rms": 0.07721634595880228
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.9900990128517151,
+          "rms": 0.14215130305811013
+        },
+        "mixtureErrorRms": 0.05794158715778663
+      }
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "antiphase",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 3.599956799997017,
+      "loadSeconds": 0.565822699922137,
+      "inferenceSeconds": 0.02652990003116429,
+      "peakRssBytes": 453943296,
+      "peakCommitBytes": 875057152,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "b3d48bc7764dffebadeb9dfdff6cca77409905b78384a813369412d4d7f2c172",
+      "failure": "AssertionError: ",
+      "metrics": {}
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.551877700025216,
+      "loadSeconds": 0.5049583000363782,
+      "inferenceSeconds": 11.575244099949487,
+      "peakRssBytes": 1241300992,
+      "peakCommitBytes": 1736474624,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 2,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.87646549998317,
+      "loadSeconds": 0.5241931000491604,
+      "inferenceSeconds": 11.79908200004138,
+      "peakRssBytes": 1240285184,
+      "peakCommitBytes": 1735262208,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 3,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.68976290000137,
+      "loadSeconds": 0.5509244999848306,
+      "inferenceSeconds": 11.654265299905092,
+      "peakRssBytes": 1241464832,
+      "peakCommitBytes": 1735536640,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "repeated20",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 47.80974210007116,
+      "loadSeconds": 0.5127221000147983,
+      "inferenceSeconds": 23.248539099935442,
+      "peakRssBytes": 1321332736,
+      "peakCommitBytes": 1893396480,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "23f207e63f7afaf0dec0d02b96bbe3df43de7b7baa66052ec2d3aebd2a8d6bc2",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.314954936504364,
+          "rms": 0.02121415075279879,
+          "siSdrDb": -0.1594554237781914,
+          "errorRms": 0.022571429065290496,
+          "differenceErrorRms": 0.003292200931575931,
+          "stereoSideErrorRms": 0.01566638835268055
+        },
+        "bass": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.39029738306999207,
+          "rms": 0.12467577912938312,
+          "siSdrDb": 15.540027055109196,
+          "errorRms": 0.020611457865147342,
+          "differenceErrorRms": 0.0014855723541550919,
+          "stereoSideErrorRms": 0.0010247690722785467
+        },
+        "other": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.23250629007816315,
+          "rms": 0.046055855037773194,
+          "siSdrDb": 8.437156445853514,
+          "errorRms": 0.01799053732704183,
+          "differenceErrorRms": 0.0035396001867322516,
+          "stereoSideErrorRms": 0.018375450892510706
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 882000,
+          "peak": 0.3167775869369507,
+          "rms": 0.037935997521693465,
+          "siSdrDb": 7.692701965942447,
+          "errorRms": 0.015327734253129308,
+          "differenceErrorRms": 0.0032724324575375803,
+          "stereoSideErrorRms": 0.010207091917839344
+        },
+        "mixtureErrorRms": 0.0033360622963029955
+      }
+    },
+    {
+      "label": "before-warm",
+      "model": "htdemucs",
+      "case": "silence",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 3.9033442999934778,
+      "loadSeconds": 0.5531743998872116,
+      "inferenceSeconds": 0.03169930004514754,
+      "peakRssBytes": 454701056,
+      "peakCommitBytes": 876212224,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "764edee16cfd3a81634fabade8c99d2f356eda1af850d939d07be1e1a7e9dbd8",
+      "failure": "AssertionError: ",
+      "metrics": {}
+    },
+    {
+      "label": "before",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 68.56145539996214,
+      "loadSeconds": 2.564906600047834,
+      "inferenceSeconds": 41.75631359999534,
+      "peakRssBytes": 1216163840,
+      "peakCommitBytes": 1735942144,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "before",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 2,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.026890499982983,
+      "loadSeconds": 0.4750177999958396,
+      "inferenceSeconds": 11.135230600018986,
+      "peakRssBytes": 1244663808,
+      "peakCommitBytes": 1735663616,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02056071069514626,
+          "siSdrDb": -0.8583771946311214,
+          "errorRms": 0.02343214184838506,
+          "differenceErrorRms": 0.003305503011304008,
+          "stereoSideErrorRms": 0.015893251744381703
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502960128648746,
+          "siSdrDb": 15.24467840029917,
+          "errorRms": 0.02134192042492698,
+          "differenceErrorRms": 0.001476969242982019,
+          "stereoSideErrorRms": 0.001014669090981629
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368354932184,
+          "siSdrDb": 7.519175530718668,
+          "errorRms": 0.01562818714057549,
+          "differenceErrorRms": 0.003308277608375226,
+          "stereoSideErrorRms": 0.011108668232024242
+        },
+        "mixtureErrorRms": 0.0033063269501938234
+      }
+    },
+    {
+      "label": "candidate-ft-s2-o50",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 2,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 83.93297630001325,
+      "loadSeconds": 6.870181499863975,
+      "inferenceSeconds": 73.21355290012434,
+      "peakRssBytes": 1375408128,
+      "peakCommitBytes": 1899278336,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3050568103790283,
+          "rms": 0.02785939119574288,
+          "siSdrDb": 4.230217250802163,
+          "errorRms": 0.0165720841847406,
+          "differenceErrorRms": 0.00319635869654953,
+          "stereoSideErrorRms": 0.014292066142113487
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.35500696301460266,
+          "rms": 0.12368209703780793,
+          "siSdrDb": 18.180052184708813,
+          "errorRms": 0.01523477847343836,
+          "differenceErrorRms": 0.0014150498863673385,
+          "stereoSideErrorRms": 0.0010729511631720275
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23434992134571075,
+          "rms": 0.04684470348724279,
+          "siSdrDb": 8.525065923217571,
+          "errorRms": 0.017793140757197266,
+          "differenceErrorRms": 0.003501256116026408,
+          "stereoSideErrorRms": 0.01758469127920568
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31147289276123047,
+          "rms": 0.03834505567797513,
+          "siSdrDb": 7.980487901180941,
+          "errorRms": 0.014914712986798515,
+          "differenceErrorRms": 0.003298253721213156,
+          "stereoSideErrorRms": 0.009792377821089078
+        },
+        "mixtureErrorRms": 0.008335521078647844
+      }
+    },
+    {
+      "label": "candidate-ht-s0-o50",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 19.302425800007768,
+      "loadSeconds": 0.49508169991895556,
+      "inferenceSeconds": 15.016943600028753,
+      "peakRssBytes": 1255784448,
+      "peakCommitBytes": 1892831232,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2718222737312317,
+          "rms": 0.02055547783574358,
+          "siSdrDb": -0.8716149976357324,
+          "errorRms": 0.023447870432282518,
+          "differenceErrorRms": 0.0033059442669146327,
+          "stereoSideErrorRms": 0.015890746212742533
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39675700664520264,
+          "rms": 0.12502766783088373,
+          "siSdrDb": 15.237303926753194,
+          "errorRms": 0.0213594532387797,
+          "differenceErrorRms": 0.0014751011645415084,
+          "stereoSideErrorRms": 0.0010147302863295915
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23326605558395386,
+          "rms": 0.046119968731435444,
+          "siSdrDb": 8.180511756413416,
+          "errorRms": 0.018441441066535797,
+          "differenceErrorRms": 0.003548109369002101,
+          "stereoSideErrorRms": 0.0190385307538174
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.32362890243530273,
+          "rms": 0.038368333353469695,
+          "siSdrDb": 7.515752264529173,
+          "errorRms": 0.01563357608914726,
+          "differenceErrorRms": 0.003307787899701876,
+          "stereoSideErrorRms": 0.011110748073295443
+        },
+        "mixtureErrorRms": 0.00330094197971605
+      }
+    },
+    {
+      "label": "candidate-ht-s2-o50",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 2,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 26.682528599980287,
+      "loadSeconds": 0.4757194999838248,
+      "inferenceSeconds": 22.226451399968937,
+      "peakRssBytes": 1317679104,
+      "peakCommitBytes": 1898831872,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.28110581636428833,
+          "rms": 0.02036437847419571,
+          "siSdrDb": -1.032986056553962,
+          "errorRms": 0.023641919784320266,
+          "differenceErrorRms": 0.003363267034256426,
+          "stereoSideErrorRms": 0.015606929244020124
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.39346349239349365,
+          "rms": 0.12493052175285724,
+          "siSdrDb": 15.136885547412867,
+          "errorRms": 0.021591288043760634,
+          "differenceErrorRms": 0.0014806526044399521,
+          "stereoSideErrorRms": 0.0010123401991047904
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23389504849910736,
+          "rms": 0.04619271782863013,
+          "siSdrDb": 8.238885901977262,
+          "errorRms": 0.018332589500504776,
+          "differenceErrorRms": 0.003539324213708054,
+          "stereoSideErrorRms": 0.018871245844221535
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3241373896598816,
+          "rms": 0.03839130485361478,
+          "siSdrDb": 7.534909940411417,
+          "errorRms": 0.015605636329272504,
+          "differenceErrorRms": 0.0032956555314745998,
+          "stereoSideErrorRms": 0.011201075550753229
+        },
+        "mixtureErrorRms": 0.0031450888724241233
+      }
+    },
+    {
+      "label": "final-ft-s0-o50",
+      "model": "htdemucs_ft",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 75.63793640001677,
+      "loadSeconds": 1.7775494999950752,
+      "inferenceSeconds": 70.05135240009986,
+      "peakRssBytes": 1395965952,
+      "peakCommitBytes": 1907019776,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "41e0ef2455dd02ece86df940b7a336b3de30f35b9c1c6056fc4d5d8f414a7db3",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.7521197199821472,
+          "rms": 0.09015059335527449,
+          "siSdrDb": 9.743761153867988,
+          "errorRms": 0.029269769031816047,
+          "differenceErrorRms": 0.009328767658450865,
+          "stereoSideErrorRms": 0.01581952692650795
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.28478050231933594,
+          "rms": 0.08017153939358342,
+          "siSdrDb": 9.178695352583112,
+          "errorRms": 0.027523483949606412,
+          "differenceErrorRms": 0.0009856329879379155,
+          "stereoSideErrorRms": 0.00935536969577795
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.42725804448127747,
+          "rms": 0.08755202551732592,
+          "siSdrDb": 0.6090365362380769,
+          "errorRms": 0.06232890501310271,
+          "differenceErrorRms": 0.011097343213148413,
+          "stereoSideErrorRms": 0.04432229552982012
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.38870880007743835,
+          "rms": 0.05750663284777778,
+          "siSdrDb": 1.9349508096165584,
+          "errorRms": 0.0536456794280764,
+          "differenceErrorRms": 0.009222167413861634,
+          "stereoSideErrorRms": 0.04147937768102455
+        },
+        "mixtureErrorRms": 0.01517113513392341
+      }
+    },
+    {
+      "label": "final-ft-s0-o50",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 44.371642300044186,
+      "loadSeconds": 1.8045519002480432,
+      "inferenceSeconds": 38.78117560001556,
+      "peakRssBytes": 1345875968,
+      "peakCommitBytes": 1891905536,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "41e0ef2455dd02ece86df940b7a336b3de30f35b9c1c6056fc4d5d8f414a7db3",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3192148506641388,
+          "rms": 0.028201656518951946,
+          "siSdrDb": 3.943509866421757,
+          "errorRms": 0.01701268052785696,
+          "differenceErrorRms": 0.003237908644598703,
+          "stereoSideErrorRms": 0.014528659387667666
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3592692017555237,
+          "rms": 0.12390253510206574,
+          "siSdrDb": 17.98055927924017,
+          "errorRms": 0.015586726494388851,
+          "differenceErrorRms": 0.0014215437978524347,
+          "stereoSideErrorRms": 0.0010740759452252632
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23432262241840363,
+          "rms": 0.04678757310278834,
+          "siSdrDb": 8.477238463400274,
+          "errorRms": 0.017880145262432326,
+          "differenceErrorRms": 0.00351184065434704,
+          "stereoSideErrorRms": 0.0177237695822974
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31145572662353516,
+          "rms": 0.038460830057993674,
+          "siSdrDb": 7.902764891281272,
+          "errorRms": 0.015040776370846639,
+          "differenceErrorRms": 0.003315683823797507,
+          "stereoSideErrorRms": 0.009748297253555064
+        },
+        "mixtureErrorRms": 0.0074624863265665255
+      }
+    },
+    {
+      "label": "final-ft-s2-o50",
+      "model": "htdemucs_ft",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 2,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 157.25483089999761,
+      "loadSeconds": 5.216305700130761,
+      "inferenceSeconds": 148.1483806000324,
+      "peakRssBytes": 1468350464,
+      "peakCommitBytes": 1925439488,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "143ecb2d7ef9bbf222781493855befd294bc41accc618432a13d481b7c464e74",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.7376769781112671,
+          "rms": 0.0900741633101749,
+          "siSdrDb": 9.735118621538188,
+          "errorRms": 0.029295383147785382,
+          "differenceErrorRms": 0.009341411809940374,
+          "stereoSideErrorRms": 0.015686800250922884
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.2837565243244171,
+          "rms": 0.08013842386969051,
+          "siSdrDb": 9.270517685278442,
+          "errorRms": 0.02726077553418113,
+          "differenceErrorRms": 0.0009806727985956097,
+          "stereoSideErrorRms": 0.009381145848790566
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.42845073342323303,
+          "rms": 0.08682212599440758,
+          "siSdrDb": 0.7737198726052419,
+          "errorRms": 0.061268978814513694,
+          "differenceErrorRms": 0.011091502224734248,
+          "stereoSideErrorRms": 0.044041858008372695
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.3779014050960541,
+          "rms": 0.058812559135617885,
+          "siSdrDb": 2.296942029313604,
+          "errorRms": 0.05227402558287952,
+          "differenceErrorRms": 0.009206664680265587,
+          "stereoSideErrorRms": 0.040831666885804384
+        },
+        "mixtureErrorRms": 0.01686027964462509
+      }
+    },
+    {
+      "label": "final-ht-s2-o50",
+      "model": "htdemucs",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 2,
+      "overlap": 0.5,
+      "format": "float32",
+      "totalSeconds": 44.48910770006478,
+      "loadSeconds": 0.4705848000012338,
+      "inferenceSeconds": 40.460744100040756,
+      "peakRssBytes": 1343062016,
+      "peakCommitBytes": 1924116480,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "143ecb2d7ef9bbf222781493855befd294bc41accc618432a13d481b7c464e74",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.7019909620285034,
+          "rms": 0.0905637367616052,
+          "siSdrDb": 9.550652305425587,
+          "errorRms": 0.029874364056707795,
+          "differenceErrorRms": 0.009331455112198522,
+          "stereoSideErrorRms": 0.01641523253896597
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.29262861609458923,
+          "rms": 0.08170498484782979,
+          "siSdrDb": 9.160062626102194,
+          "errorRms": 0.02767851611076837,
+          "differenceErrorRms": 0.0009925401911037657,
+          "stereoSideErrorRms": 0.008495540656400048
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.4637925326824188,
+          "rms": 0.08904995412346864,
+          "siSdrDb": 0.26335617666162214,
+          "errorRms": 0.06457349489288541,
+          "differenceErrorRms": 0.011319515435820472,
+          "stereoSideErrorRms": 0.045780157576497026
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.37238869071006775,
+          "rms": 0.04941511313529604,
+          "siSdrDb": 0.25035168832780164,
+          "errorRms": 0.06012754607836503,
+          "differenceErrorRms": 0.009619345888519,
+          "stereoSideErrorRms": 0.04401097505908764
+        },
+        "mixtureErrorRms": 0.004638620712652808
+      }
+    },
+    {
+      "label": "final",
+      "model": "htdemucs",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 23.04140930005815,
+      "loadSeconds": 0.5060735000297427,
+      "inferenceSeconds": 18.979263699962758,
+      "peakRssBytes": 1295994880,
+      "peakCommitBytes": 1908944896,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.7176802158355713,
+          "rms": 0.09082362693607264,
+          "siSdrDb": 9.528445882758444,
+          "errorRms": 0.02995291502192226,
+          "differenceErrorRms": 0.009351579553013065,
+          "stereoSideErrorRms": 0.016333362822648037
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.30188414454460144,
+          "rms": 0.0818515378438953,
+          "siSdrDb": 9.05937724745455,
+          "errorRms": 0.027987155507391007,
+          "differenceErrorRms": 0.0010030598741440837,
+          "stereoSideErrorRms": 0.008549517226804094
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.4729357361793518,
+          "rms": 0.08991139418552183,
+          "siSdrDb": 0.07701226613321974,
+          "errorRms": 0.06582712752296083,
+          "differenceErrorRms": 0.011330227121804324,
+          "stereoSideErrorRms": 0.04586830508562177
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.38665536046028137,
+          "rms": 0.04908848313638903,
+          "siSdrDb": -0.18306336328001738,
+          "errorRms": 0.06139464878473634,
+          "differenceErrorRms": 0.009629380974436446,
+          "stereoSideErrorRms": 0.04412328595688805
+        },
+        "mixtureErrorRms": 0.0049737164708735715
+      }
+    },
+    {
+      "label": "final",
+      "model": "htdemucs",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 15.637705200002529,
+      "loadSeconds": 0.9014215999050066,
+      "inferenceSeconds": 11.26257980009541,
+      "peakRssBytes": 1238147072,
+      "peakCommitBytes": 1709416448,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "41e0ef2455dd02ece86df940b7a336b3de30f35b9c1c6056fc4d5d8f414a7db3",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2716774046421051,
+          "rms": 0.020560981068565715,
+          "siSdrDb": -0.8583771831626565,
+          "errorRms": 0.023432704229182207,
+          "differenceErrorRms": 0.0033055030119628253,
+          "stereoSideErrorRms": 0.01589325173294343
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3969018757343292,
+          "rms": 0.12502903806133955,
+          "siSdrDb": 15.244678367476327,
+          "errorRms": 0.021339470467954903,
+          "differenceErrorRms": 0.0014769692417204293,
+          "stereoSideErrorRms": 0.0010146690911613
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.23325759172439575,
+          "rms": 0.0461140747404955,
+          "siSdrDb": 8.178400963345728,
+          "errorRms": 0.018445585956225818,
+          "differenceErrorRms": 0.0035483035676323444,
+          "stereoSideErrorRms": 0.019036451978210984
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3237737715244293,
+          "rms": 0.03836825211187134,
+          "siSdrDb": 7.5191755196582974,
+          "errorRms": 0.015627782462732775,
+          "differenceErrorRms": 0.003308277612040511,
+          "stereoSideErrorRms": 0.011108668188286533
+        },
+        "mixtureErrorRms": 0.003242855122326496
+      }
+    },
+    {
+      "label": "final",
+      "model": "htdemucs_ft",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 68.01935319998302,
+      "loadSeconds": 2.14932369987946,
+      "inferenceSeconds": 61.39663649990689,
+      "peakRssBytes": 1373917184,
+      "peakCommitBytes": 1907560448,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "143ecb2d7ef9bbf222781493855befd294bc41accc618432a13d481b7c464e74",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.7400348782539368,
+          "rms": 0.0901466716018471,
+          "siSdrDb": 9.674641497391402,
+          "errorRms": 0.029481550737964907,
+          "differenceErrorRms": 0.009293529559448356,
+          "stereoSideErrorRms": 0.015800324175306673
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.28478050231933594,
+          "rms": 0.08058961124294038,
+          "siSdrDb": 9.18862353352899,
+          "errorRms": 0.02751401803372616,
+          "differenceErrorRms": 0.0009854366309460856,
+          "stereoSideErrorRms": 0.009319375167051199
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.4334964156150818,
+          "rms": 0.08830573605504023,
+          "siSdrDb": 0.5193344493798409,
+          "errorRms": 0.06307202817710897,
+          "differenceErrorRms": 0.011138766574805344,
+          "stereoSideErrorRms": 0.04452820853558245
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.38870880007743835,
+          "rms": 0.057579693321618726,
+          "siSdrDb": 1.9651986356483677,
+          "errorRms": 0.053537443263141325,
+          "differenceErrorRms": 0.009225471206095489,
+          "stereoSideErrorRms": 0.04121543215381193
+        },
+        "mixtureErrorRms": 0.01683541630895387
+      }
+    },
+    {
+      "label": "final",
+      "model": "htdemucs_ft",
+      "case": "music",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 29.343194699962623,
+      "loadSeconds": 1.9201506999088451,
+      "inferenceSeconds": 23.709744499996305,
+      "peakRssBytes": 1338281984,
+      "peakCommitBytes": 1883947008,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "7a3e8b34b26bd325c2f36a47addb76f1ca6ecaab1f8be5edf4d45aae510571fe",
+      "inferenceSha256": "143ecb2d7ef9bbf222781493855befd294bc41accc618432a13d481b7c464e74",
+      "inputSha256": "721d80a06e4b57ff225f0f3895dd13b251ea9a449912d3c4832e6842cd415f7c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3192148506641388,
+          "rms": 0.028210932560535907,
+          "siSdrDb": 3.9375801797697156,
+          "errorRms": 0.01702219637852927,
+          "differenceErrorRms": 0.0032376800029689,
+          "stereoSideErrorRms": 0.014532164664197685
+        },
+        "bass": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.3592692017555237,
+          "rms": 0.12390687628744378,
+          "siSdrDb": 17.97574363995239,
+          "errorRms": 0.015595400800643984,
+          "differenceErrorRms": 0.0014220932902805205,
+          "stereoSideErrorRms": 0.0010744907415404779
+        },
+        "other": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.2340794801712036,
+          "rms": 0.04677930164709306,
+          "siSdrDb": 8.475872329422774,
+          "errorRms": 0.017882861353025383,
+          "differenceErrorRms": 0.0035120082630390554,
+          "stereoSideErrorRms": 0.01772219173109878
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 220500,
+          "peak": 0.31145572662353516,
+          "rms": 0.03846665585418049,
+          "siSdrDb": 7.904173396261143,
+          "errorRms": 0.015039096396034372,
+          "differenceErrorRms": 0.0033159683764228632,
+          "stereoSideErrorRms": 0.009746534944942374
+        },
+        "mixtureErrorRms": 0.007474652521031223
+      }
+    },
+    {
+      "label": "original-falcon",
+      "model": "htdemucs",
+      "case": "falcon",
+      "iteration": 1,
+      "threads": 4,
+      "shifts": 0,
+      "overlap": 0.25,
+      "format": "float32",
+      "totalSeconds": 23.379137100069784,
+      "loadSeconds": 0.6063210000284016,
+      "inferenceSeconds": 19.20422990003135,
+      "peakRssBytes": 1304055808,
+      "peakCommitBytes": 1921003520,
+      "torch": "2.5.1+cpu",
+      "runnerSha256": "58eeaa063e7376e90288f9a30953a6870e1391b73e7bf50d7729cca634d0e02e",
+      "inputSha256": "2e36aac18cf44380bd221a7f203f3ac6eed61998f3e8b0bf930e15ec4026699c",
+      "failure": null,
+      "metrics": {
+        "drums": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.71781325340271,
+          "rms": 0.09082375521479073,
+          "siSdrDb": 9.528445887395325,
+          "errorRms": 0.029953175544813835,
+          "differenceErrorRms": 0.009351579555520774,
+          "stereoSideErrorRms": 0.016333362828313994
+        },
+        "bass": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.30175110697746277,
+          "rms": 0.08185160541678653,
+          "siSdrDb": 9.059377258414978,
+          "errorRms": 0.02798712402180123,
+          "differenceErrorRms": 0.0010030598733026374,
+          "stereoSideErrorRms": 0.008549517218379035
+        },
+        "other": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.4729357361793518,
+          "rms": 0.08991139418552183,
+          "siSdrDb": 0.07701226613321974,
+          "errorRms": 0.06582712752296083,
+          "differenceErrorRms": 0.011330227121804324,
+          "stereoSideErrorRms": 0.04586830508562177
+        },
+        "vocals": {
+          "valid": true,
+          "frames": 529200,
+          "peak": 0.3865223228931427,
+          "rms": 0.04908863418561312,
+          "siSdrDb": -0.18306336973812337,
+          "errorRms": 0.06139470766660044,
+          "differenceErrorRms": 0.009629380974925359,
+          "stereoSideErrorRms": 0.044123285949978976
+        },
+        "mixtureErrorRms": 0.004985501092247899
+      }
+    }
+  ],
+  "validation": {
+    "audioRegression": "PASS including 4/6-source contracts, gain, float headroom and DC",
+    "apiSeparation": "PASS HTDemucs balanced PCM24, refinement and HTTP range playback",
+    "cancellation": "PASS",
+    "residueRefinement": "PASS",
+    "lowMemoryGuard": "PASS at 2.87 GiB available",
+    "fineTunedMaximumApi": "SKIPPED at 2.92 GiB available; Python inference tested",
+    "profileParameters": "PASS Fine-Tuned maximum uses shifts=2, overlap=0.5"
+  }
+}

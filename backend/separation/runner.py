@@ -179,33 +179,18 @@ def remove_model(name: str):
 
 
 def separate(args):
-    torch, _ = load_demucs()
-    threads = 6 if args.threads == 6 else 4
-    torch.set_num_threads(threads)
-    try:
-        torch.set_num_interop_threads(1)
-    except RuntimeError:
-        pass
-    os.environ["OMP_NUM_THREADS"] = str(threads)
-    os.environ["MKL_NUM_THREADS"] = str(threads)
-    from demucs.separate import main as demucs_main
-
-    output_args = {
-        "pcm16": [],
-        "pcm24": ["--int24"],
-        "float32": ["--float32"],
-    }[args.output_format]
-    command = [
-        "-d", "cpu", "-n", args.model, "-j", "1", "--shifts", args.shifts,
-        "--overlap", args.overlap, *output_args, "-o", args.output, args.input,
-    ]
-    print(
-        f"Modelo: {args.model}; CPU; hilos: {threads}; jobs: 1; "
-        f"shifts: {args.shifts}; overlap: {args.overlap}; salida: {args.output_format}; "
-        f"refinamiento: {args.silence_refinement}",
-        flush=True,
-    )
-    demucs_main(command)
+    # Never let a separation job implicitly download additional checkpoints.
+    ids, _, _ = installed_remote_data(args.model)
+    if len(cached_files(args.model)) != len(ids):
+        raise RuntimeError(f"El modelo {args.model} no está instalado por completo.")
+    if args.model == "mdx_extra_q" and importlib.util.find_spec("diffq") is None:
+        raise RuntimeError("MDX-Extra-Q necesita DiffQ antes de separar.")
+    os.environ["OMP_NUM_THREADS"] = str(args.threads)
+    os.environ["MKL_NUM_THREADS"] = str(args.threads)
+    _, pretrained = load_demucs()
+    from inference import separate_audio
+    report = separate_audio(args, pretrained)
+    print(f"Inferencia: {report['inferenceSeconds']:.2f}s; CPU {report['threads']} hilos; fragmentos secuenciales.", flush=True)
     gc.collect()
     from stem_refinement import refine_demucs_output
     print("Refinamiento: analizando silencios…", flush=True)

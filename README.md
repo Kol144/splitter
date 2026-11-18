@@ -24,6 +24,8 @@ FFmpeg/ffprobe se recomiendan para el análisis técnico. FFmpeg es necesario pa
 
 ## Estado de esta versión
 
+La evaluación del motor del 18 de noviembre incluye correcciones de normalización, DC y ganancia, carga secuencial de ensembles y comparaciones con referencias musicales. Fine-Tuned en perfil máximo usa ahora dos shifts, con mejoras y compromisos medidos por pista y aproximadamente el doble de tiempo frente al máximo anterior. Consulta el [informe de separación](docs/SEPARATION_OPTIMIZATION.md) y sus [mediciones](benchmarks/separation-2026-11-18.json).
+
 La interfaz y el servidor local están implementados. La integración invoca Demucs v4 en CPU y solo acepta un trabajo simultáneo. HTDemucs produce vocals, drums, bass y other; HTDemucs 6S es experimental y añade guitar/piano, con resultados de piano limitados según el propio proyecto. Consulta [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) para ver qué está probado en este entorno.
 
 El catálogo incluye `htdemucs`, `htdemucs_ft`, `mdx_extra`, `mdx_extra_q` y `htdemucs_6s`. Los dos primeros están instalados y se han ejecutado en este equipo. MDX-Extra sin cuantizar ofrece una alternativa sin DiffQ, pero requiere una descarga y más memoria. El servidor comprueba RAM y espacio antes de procesar, y guarda los parámetros realmente utilizados en el proyecto.
@@ -32,9 +34,9 @@ El catálogo incluye `htdemucs`, `htdemucs_ft`, `mdx_extra`, `mdx_extra_q` y `ht
 | --- | --- | --- |
 | Rendimiento | shifts 0, overlap 0.1 | WAV PCM 16-bit |
 | Equilibrado | shifts 0, overlap 0.25 | WAV PCM 24-bit |
-| Máxima calidad | overlap 0.5; shifts 2 en modelos simples, 0 en ensembles | WAV 32-bit float |
+| Máxima calidad | overlap 0.5; shifts 2 en HTDemucs/Fine-Tuned/6S, 0 en MDX | WAV 32-bit float |
 
-Fine-Tuned ya combina cuatro modelos, por lo que no se multiplican sus pasadas otra vez. La profundidad de salida conserva precisión; por sí sola no mejora la separación de fuentes. Los mínimos de RAM libre son 1.2 GB para HTDemucs (1.6 GB en máximo), 3 GB para Fine-Tuned, 3.5 GB para MDX-Extra y 2 GB para MDX-Extra-Q/6S. Son controles preventivos, no garantías para canciones de cualquier duración.
+Fine-Tuned combina cuatro modelos. Su perfil máximo añade shift averaging y exige aproximadamente el doble de tiempo que el máximo anterior. La profundidad de salida conserva precisión; por sí sola no mejora la separación de fuentes. Los mínimos de RAM libre son 1.2 GB para HTDemucs (1.6 GB en máximo), 3 GB para Fine-Tuned, 3.5 GB para MDX-Extra y 2 GB para MDX-Extra-Q/6S. Son controles preventivos, no garantías para canciones de cualquier duración.
 
 ## Escuchar y revisar los stems
 

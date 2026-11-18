@@ -107,10 +107,16 @@ const catalog = [
 function formatForProfile(profile, model) {
   if (profile === 'performance') return { shifts: '0', overlap: '0.1', outputFormat: 'pcm16', outputBitDepth: 16, label: 'Rendimiento' };
   if (profile === 'maximum') {
-    // The fine-tuned and MDX models are already multi-model ensembles. Running
-    // additional randomized passes would multiply their CPU time again without
-    // being a sensible default for an 8 GB CPU-only computer.
-    const shifts = model.ensemble ? '0' : '2';
+    // Fine-Tuned TTA is opt-in through this quality profile. The two measured
+    // excerpts improve in 7/8 source scores, at roughly twice the runtime.
+    // Keep unmeasured architectures on their existing settings.
+    const shifts = {
+      htdemucs: '2',
+      htdemucs_ft: '2',
+      mdx_extra: '0',
+      mdx_extra_q: '0',
+      htdemucs_6s: '2'
+    }[model.id] || '0';
     return { shifts, overlap: '0.5', outputFormat: 'float32', outputBitDepth: 32, label: 'Máxima calidad' };
   }
   return { shifts: '0', overlap: '0.25', outputFormat: 'pcm24', outputBitDepth: 24, label: 'Equilibrado' };
@@ -934,6 +940,12 @@ async function handleApi(req, res, url) {
       const metadataRow = db.prepare('SELECT metadata_json FROM projects WHERE id = ?').get(project.id);
       const metadata = JSON.parse(metadataRow?.metadata_json || '{}');
       metadata.lastModel = model.id;
+      const inferenceReportPath = path.join(outputRoot, 'inference-report.json');
+      if (existsSync(inferenceReportPath)) {
+        inference.runtime = JSON.parse(readFileSync(inferenceReportPath, 'utf8'));
+        inference.requestedThreads = threads;
+        inference.threads = inference.runtime.threads;
+      }
       metadata.inference = inference;
       metadata.refinement = refinement;
       // Only publish new files once the entire job has succeeded. Existing

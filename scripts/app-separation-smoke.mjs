@@ -49,6 +49,10 @@ try {
   assert.deepEqual(separated.stems.map(stem => stem.name).sort(), ['bass', 'drums', 'other', 'vocals']);
   assert.equal(separated.metadata.inference.outputFormat, 'pcm24');
   assert.equal(separated.metadata.inference.silenceRefinement, 'conservative-residual');
+  assert.equal(separated.metadata.inference.runtime.engine, 'demucs-sequential-v1');
+  assert.equal(separated.metadata.inference.runtime.chunkWorkers, 0);
+  assert.equal(separated.metadata.inference.runtime.frames, 5 * 44100);
+  assert(separated.metadata.inference.runtime.inferenceSeconds > 0);
   assert.equal(separated.metadata.refinement.nonDestructive, true);
   assert.equal(separated.metadata.refinement.stems.length, 4);
   for (const stem of separated.stems) {

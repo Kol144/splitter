@@ -2,6 +2,8 @@
 
 Última actualización: 17 de noviembre de 2026.
 
+La evaluación posterior del 18 de noviembre, incluidas pruebas musicales y las correcciones del motor, está en [SEPARATION_OPTIMIZATION.md](docs/SEPARATION_OPTIMIZATION.md). Las mediciones y tareas pendientes de este documento describen el estado anterior a esa evaluación.
+
 ## Implementado
 
 - Aplicación web local independiente, con interfaz propia, servidor Node y biblioteca SQLite. El servidor solo escucha en `127.0.0.1`.

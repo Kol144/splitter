@@ -84,7 +84,7 @@ try {
     overlap: result.metadata.inference.overlap,
     outputFormat: result.metadata.inference.outputFormat,
     outputBitDepth: result.metadata.inference.outputBitDepth
-  }, { profile: 'maximum', shifts: 0, overlap: .5, outputFormat: 'float32', outputBitDepth: 32 });
+  }, { profile: 'maximum', shifts: 2, overlap: .5, outputFormat: 'float32', outputBitDepth: 32 });
 
   const source = await expect(await fetch(`${base}/api/projects/${project.id}/stems/vocals?play=1`, { headers: { Range: 'bytes=0-43' } }), 206, 'Float32 stem playback');
   const header = wavHeader(Buffer.from(await source.arrayBuffer()));
