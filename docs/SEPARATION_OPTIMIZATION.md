@@ -6,6 +6,8 @@
 
 El servidor Node inicia un proceso Python por trabajo. PyTorch 2.5.1 y Demucs 4.0.1 realizan la separación en CPU. El navegador reproduce los resultados. La publicación de GitHub Pages aloja la interfaz y sigue pendiente de un servidor de inferencia para procesar online.
 
+La subida manual integrada desde GitHub incorpora también una copia anterior en `separation/`. La ruta utilizada por `server.mjs` es `backend/separation/runner.py`, que carga `backend/separation/inference.py`. Esa copia adicional contiene los mismos nombres de modelos y queda fuera de la ruta activa de la aplicación.
+
 | Modelo del catálogo | Red y pesos oficiales | Fuentes y situación verificada |
 | --- | --- | --- |
 | `htdemucs` | Hybrid Transformer Demucs, doble rama temporal/espectral y Transformer entre dominios. Firma `955717e8`. | drums, bass, other, vocals. Instalado y evaluado con audio real. |
